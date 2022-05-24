@@ -1,24 +1,21 @@
 import mutate from "dom-mutator";
+import { fetchData } from "./api";
 
 const CAMPAIGN_SELECTOR = "utm_campaign";
 const CAMPAIGN_VALUE = "generic";
-
-const mutations = [
-  {
-    selector: "#hero-callout",
-    content: "tech startup",
-  },
-  {
-    selector: "#hero-btn",
-    content: "Start now",
-  },
-];
 
 const init = () => {
   if (!shouldLoadMutations()) {
     return;
   }
-  mutations.forEach(applyMutation);
+  const { cached, request } = fetchData();
+  if (cached) {
+    cached.map(applyMutation);
+  }
+  request().then((response) => {
+    // TODO Prevent update if data matches cache
+    response.forEach(applyMutation);
+  });
 };
 
 const shouldLoadMutations = () => {
