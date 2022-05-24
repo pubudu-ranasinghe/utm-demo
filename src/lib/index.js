@@ -10,7 +10,7 @@ const init = () => {
   }
   const { cached, request } = fetchData();
   if (cached) {
-    cached.map(applyMutation);
+    cached.forEach(applyMutation);
   }
   request().then((response) => {
     // TODO Prevent update if data matches cache

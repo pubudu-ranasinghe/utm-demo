@@ -1,4 +1,4 @@
-const API_URL = "https://run.mocky.io/v3/cc2c6c56-14ae-4ea2-93cd-b5ccb73a232f";
+const API_URL = "/.netlify/functions/mapping";
 const CACHE_KEY = "utm-demo-mapping";
 
 // Returns a cached response and a promise to get fresh data
